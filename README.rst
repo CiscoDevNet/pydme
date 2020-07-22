@@ -5,7 +5,7 @@ Documentation
 -------------
 
 PyDME is a tool to provide a simple Python abstraction over DME REST API, and managed objects.
-Full documentation is available `here <https://pydme.readthedocs.io/en/latest/?>`_
+Full documentation is available `here <https://pydme.readthedocs.io/en/latest/>`_
 
 This tool is in pre EFT/Beta stage.
 
