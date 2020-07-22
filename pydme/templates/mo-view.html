@@ -1,0 +1,47 @@
+<!doctype html>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<title>PyDME MIT Query</title>
+{% include "query.html" %}
+<table>
+  <thead>
+    <tr>
+      <td><p class="counter">Total objects: {{ mos|length }}</p></td>
+    </tr>
+  </thead>
+  <tfoot>
+  </tfoot>
+  <tbody>
+  {% for mo in mos %}
+  {% set dn = mo.Dn %}
+    <tr>
+      <td>
+        <table class="mo">
+          <thead>
+            <tr>
+              <th colspan="2">
+                <a href="/{{ indexName }}/class/{{ mo.ClassName }}">{{ mo.ClassName }}</a><br/>
+                <a href="/{{ indexName }}/dn/{{ dn }}">{{ dn }}</a> <a class="symbol" href="/{{ indexName }}/dn/{{ dn|parentDn }}">▲</a><a class="symbol" href="/{{ indexName }}/dn/{{ dn }}?rsp-subtree=children">▼</a><a class="symbol" href="/audit/affected/{{ dn }}">☁</a>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for name in mo.NonEmptyPropertyNames %}
+          {% set value = mo.__getattr__(name) %}
+          {% if value == None and name == 'dn' %}
+          {% set value = mo.Dn %}
+          {% endif %}
+            <tr class="{{ loop.cycle('odd', 'even') }}">
+              <td class="key"> {{ name }} </td>
+              {% if value is Dn %}
+              <td> <a href="/{{ indexName }}/dn/{{ value }}">{{ value }}</a> <a class="symbol" href="/{{ indexName }}/dn/{{ value|parentDn }}">▲</a><a class="symbol" href="/{{ indexName }}/dn/{{ value }}?rsp-subtree=children">▼</a></td>
+              {% else %}
+              <td> {{ value }} </td>
+              {% endif %}
+            </tr>
+          {% endfor %}
+        </table>
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>

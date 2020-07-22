@@ -1,0 +1,2 @@
+recursive-include pydme/templates *
+recursive-include pydme/static *
