@@ -8,6 +8,7 @@ Jinja2==2.11.2
 MarkupSafe==1.1.1
 packaging==20.4
 Pygments==2.6.1
+pyOpenSSL==19.1.0
 pyparsing==2.4.7
 pytz==2020.1
 six==1.11.0
